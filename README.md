@@ -41,18 +41,3 @@ Keys: PgUp/PgDn scrollback, Up/Down history, Left/Right/Home/End, Ctrl-A/E/K/U/W
   A wrong password means the keys differ and the server drops the connection; the password
   is never sent. It also authenticates the server to the client, so a man-in-the-middle
   without the password cannot join the session.
-* **Without a password the channel is encrypted but not authenticated** - an active MITM
-  is possible. The client prints the server's key fingerprint on connect; note that the
-  key is ephemeral per connection, so the fingerprint is informational only. Use a password
-  if you care about MITM.
-* Passwords are as strong as you make them: an attacker who records a handshake can
-  guess offline (each guess costs one Argon2id run). Use a long passphrase, or raise the
-  Argon2 limits in `common.c`.
-* The server sanitises control characters from all user input (no terminal-escape injection);
-  the client strips them again from everything it receives.
-
-## Limits / ideas
-
-One channel per user at a time, no persistence, no flood control. Single-threaded `select()`
-server (fine for a few hundred users). Easy next steps: multiple channels per client, tab-completion,
-ops/kick/ban, rate limiting, TLS-style long-term server keys with pinning.
