@@ -9,6 +9,7 @@ Needs a C compiler and [libsodium](https://libsodium.org).
 | Platform | Setup | Build |
 |---|---|---|
 | Debian/Ubuntu | `sudo apt install build-essential libsodium-dev` | `make` |
+| Arch | 'sudo pacman -S libsodium' | 'make' |
 | macOS | `brew install libsodium` | `make` |
 | Windows | MSYS2 MinGW shell: `pacman -S mingw-w64-x86_64-{gcc,make,libsodium}` | `make` |
 
